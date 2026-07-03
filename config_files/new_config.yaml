@@ -1,0 +1,22 @@
+prerequisites:
+  - common
+    - delete_namespaces
+    - kill_dhclient
+    - kill_iperf3
+  - wifi
+    - kill_wpa_supplicant
+    - reload_wifi_driver
+  - ethernet
+    - delete_stray_macvlan
+
+setup:
+  - wifi_interfaces
+    - wlx00c0caba4552
+      wlx00c0caba4553
+      wlx00c0caba4560
+
+  - eth_interfaces
+    - enp1s0
+
+test_flow:
+  

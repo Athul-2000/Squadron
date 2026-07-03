@@ -1,0 +1,102 @@
+Association
+
+Connect to SSID
+Disconnect from SSID
+Reconnect
+Roam to another AP
+Forget network
+Scan for SSIDs
+Wait for association
+Verify association
+IP Layer
+Start DHCP
+Release DHCP lease
+Renew DHCP lease
+Configure static IP
+Remove IP address
+Verify IP address
+Verify default gateway
+
+
+Interface
+
+Bring interface up
+Bring interface down
+Change MAC address
+Reset interface
+Enable/disable power save
+Set regulatory domain (if applicable)
+
+
+Traffic
+
+Start ping
+Stop ping
+Verify ping
+Start iperf server
+Start iperf client
+Stop iperf
+Start UDP traffic
+Start TCP traffic
+Start multicast/broadcast traffic
+
+
+Packet Capture
+
+Start packet capture
+Stop packet capture
+Save capture
+Filter capture
+
+
+AP Control (if your framework manages the AP)
+
+Start AP
+Stop AP
+Change channel
+Change bandwidth
+Change security
+Enable/disable SSID
+Enable/disable MLO
+Enable/disable WPA3
+
+
+Network Events
+
+Toggle Wi-Fi radio
+Toggle Ethernet link
+Enable airplane mode (where applicable)
+Reboot client
+Reboot AP
+Restart wpa_supplicant
+
+
+Verification
+
+Verify connected SSID
+Verify BSSID
+Verify RSSI
+Verify PHY rate
+Verify channel
+Verify security type
+Verify IP connectivity
+Verify internet connectivity
+
+
+Timing / Control
+
+Wait
+Sleep
+Retry
+Execute in parallel
+Execute in sequence
+
+
+Design rule
+Each action should be small enough that its name starts with a verb:
+✅ ConnectSSID
+✅ DisconnectSSID
+✅ StartDHCP
+✅ StartIperf
+✅ ChangeChannel
+✅ VerifyRSSI

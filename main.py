@@ -40,8 +40,8 @@ def CreateAndConfigureClients():
 
     ConnectClientsToWifiAP(clients_list, WIFI_AP_PATH)
     time.sleep(5)
-    # EnableDhcp(clients_list)
-    # time.sleep(5)
+    EnableDhcp(clients_list)
+    time.sleep(5)
 
     WifiInterfaceView(wifi_interfaces_list)
     ClientView(clients_list)
@@ -55,7 +55,7 @@ def WifiConfigure():
 
 def main():
     WifiConfigure()
-
+    EthernetConfigure()
 
 
 if __name__ == "__main__":

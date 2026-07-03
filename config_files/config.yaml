@@ -7,3 +7,8 @@ wifi_interfaces:
   - wlx00c0caba4552
   - wlx00c0caba4553
   - wlx00c0caba4560
+
+eth_interfaces:
+  - name: enp1s0
+    clients: 5
+
