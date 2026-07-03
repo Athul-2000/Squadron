@@ -6,7 +6,7 @@ class WPASupplicant:
         self.namespace = client.namespace
         self.executer = executer
         self.config_path = f"/tmp/squadron/{self.interface}"
-        self.saved_ssid = list[WPASavedSSID]
+        self.saved_network = list[WPASavedSSID]
 
     def generate_config(self, ssid, password):
         config = f"""ctrl_interface=/run/wpa_supplicant
@@ -43,19 +43,24 @@ class WPASupplicant:
     def remove_network(self, id):
         wpa_cli_cmd = ["wpa_cli", "-i", self.interface, "remove_network", str(id)]
         self.executer.execute_in_namespace(wpa_cli_cmd)  
+        for index, item in enumerate(self.saved_network):
+            if item.id == target_name:
+                popped_item = self.saved_network.pop(index)
+                break
 
     def remove_all_network(self):
         wpa_cli_cmd = ["wpa_cli", "-i", self.interface, "remove_network", "all"]
         self.executer.execute_in_namespace(wpa_cli_cmd)     
 
-    def add_SSID(self, id):
-        saved_ssid_count = str(len(self.saved_ssid))
-        wpa_cli_cmd = ["wpa_cli", "-i", self.interface, "add_network", saved_ssid_count, "ssid", 'self.ssid']
+    def add_SSID(self, ssid, password):
+        saved_ssid_count = str(len(self.saved_network))
+        wpa_cli_cmd = ["wpa_cli", "-i", self.interface, "add_network", saved_ssid_count, "ssid", ssid]
         self.executer.execute_in_namespace(wpa_cli_cmd)
-        wpa_cli_cmd = ["wpa_cli", "-i", self.interface, "add_network", saved_ssid_count, "psk", 'K5x48Vz3']
+        wpa_cli_cmd = ["wpa_cli", "-i", self.interface, "add_network", saved_ssid_count, "psk", password]
         self.executer.execute_in_namespace(wpa_cli_cmd)
         wpa_cli_cmd = ["wpa_cli", "-i", self.interface, "enable_network"]
         self.executer.execute_in_namespace(wpa_cli_cmd)
+        self.saved_network.append(saved_ssid_count, ssid, password)
 
 
 
@@ -65,3 +70,11 @@ class WPASavedSSID:
         self.ssid = ssid
         self.password = password
 
+
+class Client:
+    def __init__(self, interface, namespace):
+        self.interface = interface
+        self.namespace = namespace
+
+def main():
+    executer = CommandExecutor()
